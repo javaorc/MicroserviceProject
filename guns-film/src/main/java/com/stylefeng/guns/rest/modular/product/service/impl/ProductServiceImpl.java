@@ -1,6 +1,5 @@
 package com.stylefeng.guns.rest.modular.product.service.impl;
 
-import com.stylefeng.guns.rest.common.persistence.model.Product;
 import com.stylefeng.guns.rest.common.persistence.dao.ProductMapper;
 import com.stylefeng.guns.rest.modular.product.service.IProductService;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;

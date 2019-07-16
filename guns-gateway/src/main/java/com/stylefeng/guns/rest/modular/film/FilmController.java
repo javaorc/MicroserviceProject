@@ -18,7 +18,7 @@ public class FilmController {
     @Reference
     FilmService filmService;
 
-    @RequestMapping("/getConditionList")
+    @RequestMapping("/getIndex")
     @ResponseBody
     public FilmConditionListResult getConditionList(int catId, int sourceId, int yearId ){
         List<BannerVO> banners=filmService.bannersSelect();
