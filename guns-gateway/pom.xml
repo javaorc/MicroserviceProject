@@ -4,12 +4,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.stylefeng.guns</groupId>
-    <artifactId>guns-film</artifactId>
+    <artifactId>guns-rest</artifactId>
     <version>0.0.1</version>
     <packaging>jar</packaging>
 
-    <name>guns-film</name>
-    <description>guns film影片模块</description>
+    <name>guns-rest</name>
+    <description>guns REST服务器</description>
 
     <parent>
         <groupId>com.stylefeng</groupId>
@@ -35,7 +35,6 @@
             <artifactId>zkclient</artifactId>
             <version>0.10</version>
         </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
