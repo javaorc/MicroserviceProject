@@ -28,7 +28,7 @@ public class AuthController {
     @Resource(name = "simpleValidator")
     private IReqValidator reqValidator;
 
-    @RequestMapping(value = "${jwt.auth-path}")
+    //@RequestMapping(value = "${jwt.auth-path}")
     public ResponseEntity<?> createAuthenticationToken(AuthRequest authRequest) {
 
         boolean validate = reqValidator.validate(authRequest);
