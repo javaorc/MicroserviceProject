@@ -15,4 +15,6 @@ public interface IMtimeUserTService {
 
     UpdateInfoShowBack updateAndGetInfoShowBack(UpdateInfo updateInfo,String username);
 
+    MtimeUserT getMtimeUserT(String username);
+
 }

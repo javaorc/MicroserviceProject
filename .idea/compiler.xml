@@ -13,6 +13,7 @@
         <module name="guns-film" />
         <module name="guns-gateway" />
         <module name="guns-generator" />
+        <module name="guns-order" />
         <module name="guns-rest" />
         <module name="guns-user" />
       </profile>
@@ -26,6 +27,7 @@
       <module name="guns-film (1)" target="1.5" />
       <module name="guns-gateway" target="1.8" />
       <module name="guns-generator" target="1.8" />
+      <module name="guns-order" target="1.8" />
       <module name="guns-parent" target="1.8" />
       <module name="guns-rest" target="1.8" />
       <module name="guns-user" target="1.8" />
@@ -41,6 +43,7 @@
       <module name="guns-film (1)" options="-parameters" />
       <module name="guns-gateway" options="-parameters" />
       <module name="guns-generator" options="-parameters" />
+      <module name="guns-order" options="-parameters" />
       <module name="guns-rest" options="-parameters" />
       <module name="guns-user" options="-parameters" />
     </option>

@@ -6,6 +6,7 @@ import com.stylefeng.guns.rest.modular.auth.controller.dto.AuthRequest;
 import com.stylefeng.guns.rest.modular.auth.controller.dto.AuthResponse;
 import com.stylefeng.guns.rest.modular.auth.util.JwtTokenUtil;
 import com.stylefeng.guns.rest.modular.auth.validator.IReqValidator;
+import com.stylefeng.guns.rest.modular.user.responseVO.ResponseVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,7 +30,7 @@ public class AuthController {
     @Resource(name = "simpleValidator")
     private IReqValidator reqValidator;
     @RequestMapping(value = "${jwt.auth-path}")
-    public ResponseEntity<?> createAuthenticationToken(AuthRequest authRequest) {
+    public ResponseVo createAuthenticationToken(AuthRequest authRequest) {
 
         boolean validate = reqValidator.validate(authRequest);
 
@@ -37,8 +38,9 @@ public class AuthController {
             final String randomKey = jwtTokenUtil.getRandomKey();
             final String token = jwtTokenUtil.generateToken(authRequest.getUserName(), randomKey);
             Jedis jedis = new Jedis();
-            jedis.set(authRequest.getUserName(),authRequest.getUserName());
-            return ResponseEntity.ok(new AuthResponse(token, randomKey));
+            jedis.setex(authRequest.getUserName(),180,authRequest.getUserName());
+            //return ResponseEntity.ok(new AuthResponse(token, randomKey));
+            return new ResponseVo(new AuthResponse(token, randomKey),0,null);
         } else {
             throw new GunsException(BizExceptionEnum.AUTH_REQUEST_ERROR);
         }

@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import redis.clients.jedis.Jedis;
 
@@ -35,7 +36,8 @@ public class UserController {
     JwtProperties jwtPro;
 
 
-    @RequestMapping("/check")
+    //@RequestMapping("/check")
+    @RequestMapping(value =("/check"),method = RequestMethod.POST)
     @ResponseBody
     public ResponseVo check( String username){
         boolean b = iMtimeUserTService.queryUserByUsername(username);
@@ -44,9 +46,10 @@ public class UserController {
         }
         return new ResponseVo(null,1,"用户已存在");
     }
-    @RequestMapping("/register")
+    //@RequestMapping("/register")
+    @RequestMapping(value =("/register"),method = RequestMethod.POST)
     @ResponseBody
-    public ResponseVo register(@RequestBody RegisterInfo registerInfo ){
+    public ResponseVo register( RegisterInfo registerInfo ){
 //        registerInfo.setUsername(MD5Util.encrypt(registerInfo.getUsername()));
         boolean b = iMtimeUserTService.queryUserByUsername(registerInfo.getUsername());
         if(b){
@@ -63,7 +66,8 @@ public class UserController {
 
     @Autowired
     JwtTokenUtil jwtTokenUtil;
-    @RequestMapping("/getUserInfo")
+    //@RequestMapping("/getUserInfo")
+    @RequestMapping(value =("/getUserInfo"),method = RequestMethod.GET)
     @ResponseBody
     public ResponseVo getInfo(HttpServletRequest request){
 
@@ -81,7 +85,8 @@ public class UserController {
         return new ResponseVo(null,1,"查询失败，用户尚未登陆");
     }
 
-    @RequestMapping("/logout")
+    //@RequestMapping("/logout")
+    @RequestMapping(value =("/logout"),method = RequestMethod.GET)
     @ResponseBody
     public ResponseVo logout(HttpServletRequest request){
 
@@ -99,9 +104,10 @@ public class UserController {
         return new ResponseVo(null,1,"退出失败，用户尚未登陆");
     }
 
-    @RequestMapping("/updateUserInfo")
+    //@RequestMapping("/updateUserInfo")
+    @RequestMapping(value =("/updateUserInfo"),method = RequestMethod.POST)
     @ResponseBody
-    public ResponseVo updateInfo(@RequestBody UpdateInfo updateInfo, HttpServletRequest request){
+    public ResponseVo updateInfo( UpdateInfo updateInfo, HttpServletRequest request){
 
         String requestHeader = request.getHeader(jwtPro.getHeader());
         String authToken = null;
@@ -110,9 +116,9 @@ public class UserController {
         String username = jwtTokenUtil.getUsernameFromToken(authToken);
         if(username!=null){
             UpdateInfoShowBack updateInfoShowBack = iMtimeUserTService.updateAndGetInfoShowBack(updateInfo, username);
-            return new ResponseVo(updateInfoShowBack,0,"成功");
+            return new ResponseVo(updateInfoShowBack,0,null);
         }
-        return new ResponseVo(null,1,"用户信息修改成功");
+        return new ResponseVo(null,1,"用户信息修改失败");
     }
 
     }

@@ -80,4 +80,9 @@ public class MtimeUserTServiceImpl implements IMtimeUserTService {
         }
         return null;
     }
+
+    @Override
+    public MtimeUserT getMtimeUserT(String username) {
+        return mtimeUserTMapper.queryUserByUsername(username);
+    }
 }
